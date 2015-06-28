@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/home/otov4its/prj/bb2/spicy.ecm/src/spicy'
+let g:netrw_dirhist_2='/home/otov4its/prj/bb2/spicy.ecm/src/spicy/ecm'
+let g:netrw_dirhist_3='/home/otov4its'
+let g:netrw_dirhist_4='/usr/share/vim/vim74/doc'
+let g:netrw_dirhist_5='/home/otov4its'
