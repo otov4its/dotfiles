@@ -2,6 +2,7 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
+filetype plugin indent on
 syntax on
 if has("vms")
   set nobackup		" do not keep a backup file, use versions instead
@@ -21,48 +22,39 @@ set laststatus=2
 set mouse=a
 set hlsearch
 
-"=====================================================
-" Vundle settings
-"=====================================================
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim' " let Vundle manage Vundle, required
-" My plugins
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'morhetz/gruvbox'
-Plugin 'alem0lars/vim-colorscheme-darcula'
-Plugin 'vim-scripts/vcscommand.vim' " CVS/SVN/SVK/git/hg/bzr integration plugin
-Plugin 'ludovicchabant/vim-lawrencium' " Mercurial wrapper
-Plugin 'bling/vim-airline'
-Plugin 'kien/ctrlp.vim' " Ctrl-P fuzzy searcher
-"Plugin 'jlanzarotta/bufexplorer' " Buffer explorer
-Plugin 'klen/python-mode' " Python mode
-Plugin 'davidhalter/jedi-vim' " awesome Python autocompletion with VIM
-"Plugin 'mitsuhiko/vim-python-combined'
-"Plugin 'vim-scripts/taglist.vim'
-"Plugin 'project.tar.gz'
-Plugin 'scrooloose/syntastic'
-Plugin 'Valloric/YouCompleteMe'
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-" Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" Git plugin not hosted on GitHub
-" Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Avoid a name conflict with L9
-" Plugin 'user/L9', {'name': 'newL9'}
-call vundle#end()
-filetype plugin indent on
-"=====================================================
-"=====================================================
+fun! SetupVAM()
+  let c = get(g:, 'vim_addon_manager', {})
+  let g:vim_addon_manager = c
+  let c.plugin_root_dir = expand('$HOME', 1) . '/.vim/vim-addons'
+
+  " Force your ~/.vim/after directory to be last in &rtp always:
+  " let g:vim_addon_manager.rtp_list_hook = 'vam#ForceUsersAfterDirectoriesToBeLast'
+
+  " most used options you may want to use:
+  " let c.log_to_buf = 1
+  " let c.auto_install = 0
+  let &rtp.=(empty(&rtp)?'':',').c.plugin_root_dir.'/vim-addon-manager'
+  if !isdirectory(c.plugin_root_dir.'/vim-addon-manager/autoload')
+    execute '!git clone --depth=1 git://github.com/MarcWeber/vim-addon-manager '
+        \       shellescape(c.plugin_root_dir.'/vim-addon-manager', 1)
+  endif
+
+  " This provides the VAMActivate command, you could be passing plugin names, too
+  call vam#ActivateAddons([], {})
+endfun
+call SetupVAM()
+
+" ACTIVATING PLUGINS
+VAMActivate
+	\	gruvbox
+	\	Solarized
+	\	Darcula_Color_Scheme
+	\	vim-airline
+	\	ctrlp
+	\	Python-mode-klen
+	\	jedi-vim
+	\	Syntastic
+	\	YouCompleteMe
 
 
 "=====================================================
