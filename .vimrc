@@ -58,6 +58,7 @@ VAMActivate
 	\	jedi-vim
 	\	Syntastic
 	\	YouCompleteMe
+	\	vim-signify  " Indicating modified lines VCS.
 "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 "=====================================================
