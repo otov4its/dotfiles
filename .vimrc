@@ -1,27 +1,29 @@
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
-set hidden
+
 set autoread
-set nobackup
-set nowritebackup
-set cmdheight=2
-set updatetime=300
-set shortmess+=c
 set backspace=indent,eol,start
-set history=10000
-set showcmd
-set ruler
-set visualbell
-set incsearch
-set ignorecase
-set number
+set cmdheight=2
+set completeopt=longest,menuone
 set cursorline
-set wildmode=list:longest
-set wildmenu
+set hidden
+set history=10000
 set hlsearch
+set ignorecase
+set incsearch
 set laststatus=2
 set mouse=a
+set nobackup
+set nowritebackup
+set number
+set ruler
+set shortmess+=c
+set showcmd
+set updatetime=300
+set visualbell
+set wildmenu
+set wildmode=list:longest
 
 filetype plugin indent on
 syntax on
@@ -52,8 +54,8 @@ augroup END
 " vim-plug plugin manager
 " see commands like :Plug...
 " for installing listed plugins run :PlugInstall command
-" for updating vim-plug itself run :PlugUpgrade command
 " for updating installed plugins run :PlugUpdate command
+" for updating vim-plug itself run :PlugUpgrade command
 call plug#begin()
 " Color scheme
 Plug 'morhetz/gruvbox'
@@ -68,4 +70,8 @@ call plug#end()
 " Color scheme
 set background=dark
 colorscheme gruvbox
+
+" Mappings
+" <Esc> is equal to <Ctrl-[>
+nmap <silent> <Esc><Esc> :nohlsearch<CR> " Clear highlightings when hlsearch
 
