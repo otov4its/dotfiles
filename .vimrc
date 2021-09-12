@@ -69,7 +69,7 @@ nmap <silent> <Esc><Esc> :nohlsearch<CR>
 " for updating vim-plug itself run :PlugUpgrade command
 call plug#begin()
     " Syntax for apparmor files
-    " local plugin with debian distribution
+    " local plugin (syntax file is the symlink to debian distribution)
     Plug '~/.vim/pack/local/start/apparmor'
     " Color scheme
     Plug 'morhetz/gruvbox'
