@@ -13,7 +13,6 @@ set hlsearch
 set ignorecase
 set incsearch
 set laststatus=2
-set mouse=a
 set nobackup
 set nowritebackup
 set number
@@ -24,6 +23,13 @@ set updatetime=300
 set visualbell
 set wildmenu
 set wildmode=list:longest
+" Spaces win tabs
+set expandtab
+set tabstop=4
+set shiftwidth=4
+" Indentation
+set autoindent
+set smartindent
 
 filetype plugin indent on
 syntax on
@@ -51,27 +57,31 @@ autocmd BufReadPost *
 \ endif
 augroup END
 
+" Mappings
+" <Esc> is equal to <Ctrl-[>
+" Clear highlightings when hlsearch
+nmap <silent> <Esc><Esc> :nohlsearch<CR>
+
 " vim-plug plugin manager
 " see commands like :Plug...
 " for installing listed plugins run :PlugInstall command
 " for updating installed plugins run :PlugUpdate command
 " for updating vim-plug itself run :PlugUpgrade command
 call plug#begin()
-" Color scheme
-Plug 'morhetz/gruvbox'
-" Syntax for apparmor files
-" local plugin with debian distribution
-Plug '~/.vim/pack/local/start/apparmor'
-Plug 'vim-airline/vim-airline'
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
+    " Syntax for apparmor files
+    " local plugin with debian distribution
+    Plug '~/.vim/pack/local/start/apparmor'
+    " Color scheme
+    Plug 'morhetz/gruvbox'
+    Plug 'vim-airline/vim-airline'
+    Plug 'airblade/vim-gitgutter'
+    Plug 'tpope/vim-fugitive'
 call plug#end()
 
 " Color scheme
 set background=dark
 colorscheme gruvbox
 
-" Mappings
-" <Esc> is equal to <Ctrl-[>
-nmap <silent> <Esc><Esc> :nohlsearch<CR> " Clear highlightings when hlsearch
+" Airline settings
+let g:airline_symbols_ascii = 1
 
