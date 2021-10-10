@@ -30,6 +30,8 @@ set shiftwidth=4
 " Indentation
 set autoindent
 set smartindent
+" Mouse support
+set mouse=a
 
 filetype plugin indent on
 syntax on
@@ -78,9 +80,17 @@ call plug#begin()
     Plug 'tpope/vim-fugitive'
 call plug#end()
 
+" Gruvbox colorscheme specific settings
+let g:gruvbox_italic=1
+
 " Color scheme
 set background=dark
-colorscheme gruvbox
+if exists("$COLORTERM")
+    if has("termguicolors")
+        set termguicolors
+    endif
+    colorscheme gruvbox
+endif
 
 " Airline settings
 let g:airline_symbols_ascii = 1
